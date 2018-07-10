@@ -1,8 +1,8 @@
 /**
  * CSS to hide everything on the page,
- * except for elements that have the "beastify-image" class.
+ * except for elements that have the "emoacao-image" class.
  */
-const hidePage = `body > :not(.beastify-image) {
+const hidePage = `body > :not(.emoacao-image) {
                     display: none;
                   }`;
 
@@ -34,24 +34,12 @@ function listenForClicks() {
      * then get the beast URL and
      * send a "beastify" message to the content script in the active tab.
      */
-    function beastify(tabs) {
+    function emoacao(tabs) {
       browser.tabs.insertCSS({code: hidePage}).then(() => {
         let url = beastNameToURL(e.target.textContent);
         browser.tabs.sendMessage(tabs[0].id, {
-          command: "beastify",
+          command: "emoacao",
           beastURL: url
-        });
-      });
-    }
-
-    /**
-     * Remove the page-hiding CSS from the active tab,
-     * send a "reset" message to the content script in the active tab.
-     */
-    function reset(tabs) {
-      browser.tabs.removeCSS({code: hidePage}).then(() => {
-        browser.tabs.sendMessage(tabs[0].id, {
-          command: "reset",
         });
       });
     }
@@ -60,23 +48,13 @@ function listenForClicks() {
      * Just log the error to the console.
      */
     function reportError(error) {
-      console.error(`Could not beastify: ${error}`);
+      console.error(`Could not register Emotion: ${error}`);
     }
 
-    /**
-     * Get the active tab,
-     * then call "beastify()" or "reset()" as appropriate.
-     */
-    if (e.target.classList.contains("beast")) {
-      browser.tabs.query({active: true, currentWindow: true})
-        .then(beastify)
-        .catch(reportError);
-    }
-    else if (e.target.classList.contains("reset")) {
-      browser.tabs.query({active: true, currentWindow: true})
-        .then(reset)
-        .catch(reportError);
-    }
+   browser.tabs.query({active: true, currentWindow: true})
+    .then(emoacao)
+    .catch(reportError);
+   
   });
 }
 
@@ -87,7 +65,7 @@ function listenForClicks() {
 function reportExecuteScriptError(error) {
   document.querySelector("#popup-content").classList.add("hidden");
   document.querySelector("#error-content").classList.remove("hidden");
-  console.error(`Failed to execute beastify content script: ${error.message}`);
+  console.error(`Failed to execute emoacao content script: ${error.message}`);
 }
 
 /**
@@ -95,6 +73,6 @@ function reportExecuteScriptError(error) {
  * and add a click handler.
  * If we couldn't inject the script, handle the error.
  */
-browser.tabs.executeScript({file: "/content_scripts/beastify.js"})
+browser.tabs.executeScript({file: "/content_scripts/emoacao.js"})
 .then(listenForClicks)
 .catch(reportExecuteScriptError);

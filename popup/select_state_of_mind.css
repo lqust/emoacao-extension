@@ -16,10 +16,10 @@ html, body {
   cursor: pointer;
 }
 
-.beast:hover {
+.emoacao:hover {
   background-color: #f0f0f0;
 }
 
-.beast {
+.emoacao {
   background-color: #c0c0c0;
 }

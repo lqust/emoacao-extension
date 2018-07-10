@@ -20,7 +20,7 @@
         "size": 32
     }],
     "default_title": "EmoAção",
-    "default_popup": "popup/choose_beast.html"
+    "default_popup": "popup/select_state_of_mind.html"
   }
 
 }
