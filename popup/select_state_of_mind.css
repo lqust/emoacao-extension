@@ -1,0 +1,25 @@
+html, body {
+  width: 240px;
+}
+
+.hidden {
+  display: none;
+}
+
+.button {
+  margin: 3% auto;
+  padding: 2px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: sans-serif;
+  cursor: pointer;
+}
+
+.beast:hover {
+  background-color: #f0f0f0;
+}
+
+.beast {
+  background-color: #c0c0c0;
+}
