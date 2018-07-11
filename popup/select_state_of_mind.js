@@ -16,16 +16,25 @@ function listenForClicks() {
     /**
      * Given the name of a beast, get the URL to the corresponding image.
      */
-    function beastNameToURL(beastName) {
-      switch (beastName) {
+    function registerSoM(stateOfMind) {
+
+      var currentdate = new Date(); 
+      var datetime = currentdate.getFullYear() + "-"
+                   + (currentdate.getMonth()+1)  + "-" 
+                   + currentdate.getDate() + " "  
+                   + currentdate.getHours() + ":"  
+                   + currentdate.getMinutes() + ":" 
+                   + currentdate.getSeconds();
+
+      switch (stateOfMind) {
         case "Sem foco & Feliz":
-          return browser.extension.getURL("beasts/frog.jpg");
+          return datetime + ",0,1";
         case "Com foco & Triste":
-          return browser.extension.getURL("beasts/snake.jpg");
+          return datetime + ",1,0";
         case "Sem foco & Triste":
-          return browser.extension.getURL("beasts/turtle.jpg");
+          return datetime + ",0,0";
         case "Com foco & Feliz":
-          return browser.extension.getURL("beasts/cst.png");
+          return datetime + ",1,1";
       }
     }
 
@@ -36,10 +45,10 @@ function listenForClicks() {
      */
     function emoacao(tabs) {
       browser.tabs.insertCSS({code: hidePage}).then(() => {
-        let url = beastNameToURL(e.target.textContent);
-        browser.tabs.sendMessage(tabs[0].id, {
-          command: "emoacao",
-          beastURL: url
+        console.log(
+                    registerSoM(e.target.textContent)
+                    );
+
         });
       });
     }
