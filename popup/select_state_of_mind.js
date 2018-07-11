@@ -13,9 +13,6 @@ const hidePage = `body > :not(.emoacao-image) {
 function listenForClicks() {
   document.addEventListener("click", (e) => {
 
-    /**
-     * Given the name of a beast, get the URL to the corresponding image.
-     */
     function registerSoM(stateOfMind) {
 
       var currentdate = new Date(); 
@@ -38,20 +35,12 @@ function listenForClicks() {
       }
     }
 
-    /**
-     * Insert the page-hiding CSS into the active tab,
-     * then get the beast URL and
-     * send a "beastify" message to the content script in the active tab.
-     */
     function emoacao(tabs) {
       browser.tabs.insertCSS({code: hidePage}).then(() => {
-        console.log(
-                    registerSoM(e.target.textContent)
-                    );
+        console.log(registerSoM(e.target.textContent));
 
         });
-      });
-    }
+      }
 
     /**
      * Just log the error to the console.

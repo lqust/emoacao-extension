@@ -1,5 +1,4 @@
 {
-
   "description": "Selects a state of mind for tracking team happiness and productiviy",
   "manifest_version": 1,
   "name": "EmoAção",
@@ -7,20 +6,19 @@
   "icons": {
     "48": "icons/emoacao-logo.png"
   },
-
   "permissions": [
     "activeTab"
   ],
-
   "browser_action": {
     "default_icon": "icons/emoacao-logo.png",
-    "theme_icons": [{
+    "theme_icons": [
+      {
         "light": "icons/emoacao-logo.png",
         "dark": "icons/emoacao-logo.png",
         "size": 32
-    }],
+      }
+    ],
     "default_title": "EmoAção",
     "default_popup": "popup/select_state_of_mind.html"
   }
-
 }
