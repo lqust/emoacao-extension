@@ -1,6 +1,6 @@
 {
   "description": "Selects a state of mind for tracking team happiness and productiviy",
-  "manifest_version": 1,
+  "manifest_version": 2,
   "name": "EmoAção",
   "version": "1.0",
   "icons": {

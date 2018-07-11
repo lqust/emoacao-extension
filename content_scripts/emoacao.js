@@ -14,31 +14,17 @@
    * create and style an IMG node pointing to
    * that image, then insert the node into the document.
    */
-  function insertBeast(beastURL) {
-    removeExistingBeasts();
-    let beastImage = document.createElement("img");
-    beastImage.setAttribute("src", beastURL);
-    beastImage.style.height = "100vh";
-    beastImage.className = "beastify-image";
-    document.body.appendChild(beastImage);
+  function insertBeast(registeredSoM) {
+    document.body.appendChild(registeredSoM);
   }
 
-  /**
-   * Remove every beast from the page.
-   */
-  function removeExistingBeasts() {
-    let existingBeasts = document.querySelectorAll(".beastify-image");
-    for (let beast of existingBeasts) {
-      beast.remove();
-    }
-  }
 
   /**
    * Listen for messages from the background script.
    * Call "beastify()" or "reset()".
   */
   browser.runtime.onMessage.addListener((message) => {
-    if (message.command === "beastify") {
+    if (message.command === "emoacao") {
       insertBeast(message.beastURL);
     } else if (message.command === "reset") {
       removeExistingBeasts();
