@@ -37,7 +37,13 @@ function listenForClicks() {
 
     function emoacao(tabs) {
       browser.tabs.insertCSS({code: hidePage}).then(() => {
-        console.log(registerSoM(e.target.textContent));
+        let stateOfMindRow = registerSoM(e.target.textContent);
+        browser.tabs.sendMessage(tabs[0].id, {
+          command: "emoacao",
+          stateOfMind: stateOfMindRow
+        });
+
+        console.log(stateOfMindRow);
 
         });
       }
@@ -66,11 +72,16 @@ function reportExecuteScriptError(error) {
   console.error(`Failed to execute emoacao content script: ${error.message}`);
 }
 
+console.log("asaasdsajkfsdlkjfsdlkjfsdfasfjkhslfhsafklshfkslj");
+
 /**
  * When the popup loads, inject a content script into the active tab,
  * and add a click handler.
  * If we couldn't inject the script, handle the error.
- */
+
+
 browser.tabs.executeScript({file: "/content_scripts/emoacao.js"})
 .then(listenForClicks)
 .catch(reportExecuteScriptError);
+
+*/

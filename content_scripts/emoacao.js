@@ -14,20 +14,20 @@
    * create and style an IMG node pointing to
    * that image, then insert the node into the document.
    */
-  function insertBeast(registeredSoM) {
+  function writeSoM(registeredSoM) {
     document.body.appendChild(registeredSoM);
   }
 
 
   /**
    * Listen for messages from the background script.
-   * Call "beastify()" or "reset()".
+   * Call "emoacao()" or "reset()".
   */
   browser.runtime.onMessage.addListener((message) => {
     if (message.command === "emoacao") {
-      insertBeast(message.beastURL);
+      writeSoM(message.stateOfMind);
     } else if (message.command === "reset") {
-      removeExistingBeasts();
+      console.log("reset");
     }
   });
 
