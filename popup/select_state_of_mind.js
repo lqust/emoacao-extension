@@ -1,3 +1,17 @@
+
+const gsURL = "https://script.google.com/macros/d/1J2cVAQohwv58U94o3yIVYu4xg9ScrORK--n5oo9sqvY_WAYfkHKlLNd4/exec"
+
+function postToSpreadsheet(stateOfMindData) {
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", gsURL, true);
+  xhr.setRequestHeader('Content-Type', 'text/plain');
+  xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+  xhr.send(stateOfMindData);
+
+}
+
+
 function listenForClicks() {
 
   document.addEventListener("click", (e) => {
@@ -9,17 +23,17 @@ function listenForClicks() {
                    + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 
       switch (stateOfMind) {
-        case "Sem foco & Feliz":  return datetime + ",0,1";
-        case "Com foco & Triste": return datetime + ",1,0";
-        case "Sem foco & Triste": return datetime + ",0,0";
-        case "Com foco & Feliz":  return datetime + ",1,1";
+        case "Sem foco & Feliz":  return "{ timestamp:" + datetime + ", foco:0, feliz:1 }";
+        case "Com foco & Triste": return "{ timestamp:" + datetime + ", foco:1, feliz:0 }";
+        case "Sem foco & Triste": return "{ timestamp:" + datetime + ", foco:0, feliz:0 }";
+        case "Com foco & Feliz":  return "{ timestamp:" + datetime + ", foco:1, feliz:1 }";
 
       }
     }
 
     function emoacao(tabs) {
         let stateOfMindRow = registerSoM(e.target.textContent);
-        console.log(stateOfMindRow);
+        postToSpreadsheet(stateOfMindRow);
       }
 
     function reportError(error) {
@@ -31,7 +45,7 @@ function listenForClicks() {
     .catch(reportError);
    
   });
-  
+
 }
 
 listenForClicks();
