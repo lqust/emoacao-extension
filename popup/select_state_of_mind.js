@@ -1,4 +1,6 @@
-const postURL = "https://script.google.com/macros/d/1J2cVAQohwv58U94o3yIVYu4xg9ScrORK--n5oo9sqvY_WAYfkHKlLNd4/exec"
+const postURL = "https://script.google.com/a/thoughtworks.com/macros/s/AKfycbxkA-kYvVfCI_k_q0Qn96CmQ2y0MaL2NrnLgAikInW5G_rt15s/exec"
+
+window.googleDocCallback = function () { return true; };
 
 function storeData(postBody) {  
 
@@ -9,16 +11,7 @@ function storeData(postBody) {
   xhr.open('POST', postURL);
   // xhr.withCredentials = true;
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhr.onreadystatechange = function() {
-      console.log( xhr.status, xhr.statusText )
-      console.log(xhr.responseText);
-      return;
-  };
-  // url encode form data for sending as post data
-  var encoded = Object.keys(data).map(function(k) {
-      return encodeURIComponent(k) + "=" + encodeURIComponent(data[k])
-  }).join('&')
-  xhr.send(encoded);
+  xhr.send(postBody);
   
 }
 
@@ -28,19 +21,21 @@ function registerSoM(stateOfMind) {
                 + currentdate.getHours() + ":" + currentdate.getMinutes() + ":" + currentdate.getSeconds();
 
   switch (stateOfMind) {
-    case "0,1":  return "{ timestamp:" + datetime + ", foco:0, feliz:1 }";
-    case "1,0": return "{ timestamp:" + datetime + ", foco:1, feliz:0 }";
-    case "0,0": return "{ timestamp:" + datetime + ", foco:0, feliz:0 }";
-    case "1,1":  return "{ timestamp:" + datetime + ", foco:1, feliz:1 }";
+    case "Sem foco & Feliz":  return "{ timestamp:" + datetime + ", foco:0, feliz:1 }";
+    case "Com foco & Triste": return "{ timestamp:" + datetime + ", foco:1, feliz:0 }";
+    case "Sem foco & Triste": return "{ timestamp:" + datetime + ", foco:0, feliz:0 }";
+    case "Com foco & Feliz":  return "{ timestamp:" + datetime + ", foco:1, feliz:1 }";
   }
 
 }
 
 function listenForClicks() {
   document.addEventListener("click", (e) => {
-    console.log("oi");
-    storeData(registerSoM(e.target.textContent));
+    let stateOfMind = registerSoM(e.target.textContent);
+    storeData(stateOfMind);
   });
 }
+
+console.log("rodando...");
 
 listenForClicks();
