@@ -11,6 +11,21 @@ function storeData(postBody) {
   xhr.open('POST', postURL);
   // xhr.withCredentials = true;
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === 4) {
+      
+      console.log(xhr.responseText);
+
+      var response = JSON.parse(xhr.responseText);
+        if (xhr.status === 200 && response.status === 'OK') {
+           console.log('successful');
+        } else {
+           console.log('failed');
+        }
+    }
+  }
+
   xhr.send(postBody);
   
 }
