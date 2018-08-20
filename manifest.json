@@ -15,7 +15,7 @@
     "theme_icons": [
       {
         "light": "icons/emoacao-logo.png",
-        "dark": "icons/emoacao-logo_branco.png",
+        "dark": "icons/emoacao-logo.png",
         "size": 32
       }
     ],

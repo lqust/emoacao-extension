@@ -1,23 +1,26 @@
-const postURL = "https://script.google.com/macros/s/AKfycbxkA-kYvVfCI_k_q0Qn96CmQ2y0MaL2NrnLgAikInW5G_rt15s/exec";
-const delayInMinutes = 60;
+const POST_URL = "https://script.google.com/macros/s/AKfycbxkA-kYvVfCI_k_q0Qn96CmQ2y0MaL2NrnLgAikInW5G_rt15s/exec";
+const DELAY = 0.1;
+const REMINDER_LOGO_PATH = "../icons/emoacao-logo-reminder.png";
+const ORIGINAL_LOGO_PATH = "../icons/emoacao-logo.png";
 
 browser.alarms.onAlarm.addListener(oneHourNotification);
-browser.alarms.create("oneHourReminder", {delayInMinutes});
+browser.alarms.create("oneHourReminder", {delayInMinutes: DELAY});
 
-window.googleDocCallback = function () { return true; };
+window.googleDocCallback = function () { return true; }; // needed to guarantee CORS headers are properly set
 
 function storeData(postBody) {  
 
   console.log(postBody);
 
   var xhr = new XMLHttpRequest();
-  xhr.open('POST', postURL);
+  xhr.open('POST', POST_URL);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function() {
     if (xhr.readyState === 4) {
       
-      console.log(xhr.responseText);
+      console.log(xhr.statusText); // esse log não é exibido quando o window.close é chamado de dentro do listener (lin: 61)
+      // window.close(); // inserido aqui para decomentar para testar
 
     }
   }
@@ -39,20 +42,29 @@ function registerSoM(stateOfMind) {
 
 function oneHourNotification() {
 
-  browser.browserAction.setIcon({path: "icons/emoacao-logo_vermelho.png"});
+  console.log("changing icon to" + REMINDER_LOGO_PATH);
+  browser.browserAction.setIcon({path: REMINDER_LOGO_PATH});
 
 }
 
 function listenForClicks() {
 
-  browser.alarms.clear("oneHourReminder");
-
   document.addEventListener("click", (e) => {
+
     let stateOfMind = registerSoM(e.target.textContent);
+
+    browser.alarms.clear("oneHourReminder");
+    browser.browserAction.setIcon({path: ORIGINAL_LOGO_PATH});
+  
     storeData(stateOfMind);
+
+    window.close(); // comente essa linha e descomente na store data (lin: 23) para ver a resposta do post
+
+    browser.alarms.create("oneHourReminder", {delayInMinutes: DELAY});
+
   });
 
-  browser.alarms.create("oneHourReminder", {delayInMinutes});
+  
 
 }
 
