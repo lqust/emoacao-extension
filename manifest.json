@@ -7,7 +7,7 @@
     "48": "icons/emoacao-logo.png"
   },
   "permissions": [
-    "activeTab",
+    "alarms",
     "https://script.google.com/*"
   ],
   "browser_action": {
@@ -15,7 +15,7 @@
     "theme_icons": [
       {
         "light": "icons/emoacao-logo.png",
-        "dark": "icons/emoacao-logo.png",
+        "dark": "icons/emoacao-logo_branco.png",
         "size": 32
       }
     ],

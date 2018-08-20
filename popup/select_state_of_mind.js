@@ -1,5 +1,8 @@
-
 const postURL = "https://script.google.com/macros/s/AKfycbxkA-kYvVfCI_k_q0Qn96CmQ2y0MaL2NrnLgAikInW5G_rt15s/exec";
+const delayInMinutes = 60;
+
+browser.alarms.onAlarm.addListener(oneHourNotification);
+browser.alarms.create("oneHourReminder", {delayInMinutes});
 
 window.googleDocCallback = function () { return true; };
 
@@ -34,11 +37,23 @@ function registerSoM(stateOfMind) {
 
 }
 
+function oneHourNotification() {
+
+  browser.browserAction.setIcon({path: "icons/emoacao-logo_vermelho.png"});
+
+}
+
 function listenForClicks() {
+
+  browser.alarms.clear("oneHourReminder");
+
   document.addEventListener("click", (e) => {
     let stateOfMind = registerSoM(e.target.textContent);
     storeData(stateOfMind);
   });
+
+  browser.alarms.create("oneHourReminder", {delayInMinutes});
+
 }
 
 listenForClicks();
