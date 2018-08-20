@@ -1,9 +1,16 @@
 # emoacao-extension
 
+## TODO
+* Google Chrome compatibility
+* Select project at first use
+* Make UI pretty
+
+## Related assets
+
 **Spreadsheet:** https://docs.google.com/spreadsheets/d/1V3exFOzNPAp_TkYgONwpZCEcYqVFOeXhY_Ba7TLB3es/edit#gid=0
 **Script:** https://script.google.com/a/thoughtworks.com/macros/d/MPkLRf72i-vExU-dW22manAmzn1S_adTp/edit?uiv=2&mid=ACjPJvHDOphq1fXM2bsUJAwK5JhBd16e31aJBI_XaDZD3lSImuoy9DrEl6f81xbHQG2BYfXxzk3hIU8qPgsDKwTAeHFHujcIjZJ-_gWM0g-VsFRZM3hfTcB_GYB1lQdxczk1IxtNniZfA1I
 
-**Code.gs**
+## Code.gs
 ```
 function doPost(e) {
   
