@@ -5,7 +5,6 @@ window.googleDocCallback = function () { return true; };
 
 function storeData(postBody) {  
 
-  console.log(postURL);
   console.log(postBody);
 
   var xhr = new XMLHttpRequest();
@@ -26,16 +25,12 @@ function storeData(postBody) {
 
 function registerSoM(stateOfMind) {
 
-  var outputSoM;
-
   switch (stateOfMind) {
-    case "Sem foco & Feliz" : outputSoM = { "foco":"0", "feliz":"1" };
-    case "Com foco & Triste": outputSoM = { "foco":"1", "feliz":"0" }; 
-    case "Sem foco & Triste": outputSoM = { "foco":"0", "feliz":"0" }; 
-    case "Com foco & Feliz" : outputSoM = { "foco":"1", "feliz":"1" };
+    case "Sem foco & Feliz" : return { "foco":"0", "feliz":"1" };
+    case "Com foco & Triste": return { "foco":"1", "feliz":"0" }; 
+    case "Sem foco & Triste": return { "foco":"0", "feliz":"0" }; 
+    case "Com foco & Feliz" : return { "foco":"1", "feliz":"1" };
   }
-
-  return outputSoM;
 
 }
 
@@ -45,7 +40,5 @@ function listenForClicks() {
     storeData(stateOfMind);
   });
 }
-
-console.log("rodando...");
 
 listenForClicks();
