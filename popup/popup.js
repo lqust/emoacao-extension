@@ -2,6 +2,10 @@ const POST_URL = "https://script.google.com/macros/s/AKfycbxkA-kYvVfCI_k_q0Qn96C
 const DELAY = 60;  // must be the same value as in background.js
 const ORIGINAL_LOGO_PATH = "../icons/emoacao-logo.png";
 
+var myBrowser;
+if (navigator.userAgent.indexOf("Chrome") >= 0) {myBrowser = chrome} //browser is Chrome
+else {myBrowser = browser} //  assuming browser is Firefox
+
 window.googleDocCallback = function () { return true; }; // needed to guarantee CORS headers are properly set
 
 function storeData(postBody) {  
@@ -44,12 +48,12 @@ function listenForClicks() {
 
     let stateOfMind = registerSoM(e.target.textContent);
 
-    browser.alarms.clear("oneHourReminder");
-    browser.browserAction.setIcon({path: ORIGINAL_LOGO_PATH});
+    myBrowser.alarms.clear("oneHourReminder");
+    myBrowser.browserAction.setIcon({path: ORIGINAL_LOGO_PATH});
   
     storeData(stateOfMind);
 
-    browser.alarms.create("oneHourReminder", {delayInMinutes: DELAY});
+    myBrowser.alarms.create("oneHourReminder", {delayInMinutes: DELAY});
 
   });
 
