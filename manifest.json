@@ -8,7 +8,7 @@
     "https://script.google.com/*"
   ],
   "browser_action": {
-    "default_icon": "icons/emoacao-logo.png",
+    "default_icon": "icons/emoacao-logo-128.png",
     "default_title": "EmoAção",
     "default_popup": "popup/popup.html"
   },

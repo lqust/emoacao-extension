@@ -1,10 +1,18 @@
 const POST_URL = "https://script.google.com/macros/s/AKfycbxkA-kYvVfCI_k_q0Qn96CmQ2y0MaL2NrnLgAikInW5G_rt15s/exec";
 const DELAY = 60;  // must be the same value as in background.js
-const ORIGINAL_LOGO_PATH = "../icons/emoacao-logo.png";
+const ORIGINAL_LOGO_PATH = "../icons/emoacao-logo-128.png";
 
 var myBrowser;
 if (navigator.userAgent.indexOf("Chrome") >= 0) {myBrowser = chrome} //browser is Chrome
 else {myBrowser = browser} //  assuming browser is Firefox
+
+var port = myBrowser.extension.connect({
+  name: "Sample Communication"
+});
+port.postMessage("Hi BackGround");
+port.onMessage.addListener(function(msg) {
+  console.log("message recieved" + msg);
+});
 
 window.googleDocCallback = function () { return true; }; // needed to guarantee CORS headers are properly set
 
