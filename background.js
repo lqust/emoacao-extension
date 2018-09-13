@@ -1,4 +1,4 @@
-const DELAY = 1;
+const DELAY = 60;
 const REMINDER_LOGO_PATH = "../icons/emoacao-logo-reminder-128.png";
 const ORIGINAL_LOGO_PATH = "../icons/emoacao-logo-128.png";
 
