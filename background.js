@@ -1,15 +1,23 @@
-const DELAY = 60; // must be the same value as in popup.js
+const DELAY = 1;
 const REMINDER_LOGO_PATH = "../icons/emoacao-logo-reminder-128.png";
+const ORIGINAL_LOGO_PATH = "../icons/emoacao-logo-128.png";
 
 var myBrowser;
 if (navigator.userAgent.indexOf("Chrome") >= 0) {myBrowser = chrome} //browser is Chrome
 else {myBrowser = browser} //  assuming browser is Firefox
 
-myBrowser.extension.onConnect.addListener(function(port) {
-    console.log("Connected .....");
+myBrowser.runtime.onConnect.addListener(function(port) {
     port.onMessage.addListener(function(msg) {
-         console.log("message recieved" + msg);
-         port.postMessage("Hi Popup.js");
+         if (msg === "clear") {
+            myBrowser.alarms.clear("oneHourReminder");
+            myBrowser.browserAction.setIcon({path: ORIGINAL_LOGO_PATH});
+            console.log("Icon: " + ORIGINAL_LOGO_PATH);
+            
+         } else if (msg === "create") {
+            myBrowser.alarms.create("oneHourReminder", {delayInMinutes: DELAY});
+            console.log("Icon: " + ORIGINAL_LOGO_PATH);
+
+         }
     });
 })
 
