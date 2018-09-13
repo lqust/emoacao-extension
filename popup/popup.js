@@ -11,7 +11,7 @@ function identifyBrowser() {
   else { //  assuming browser is Firefox
     return "firefox"
   }
-}
+} // identifyBrowser
 
 function storeData(postBody) {  
   // console.log(postBody);
