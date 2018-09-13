@@ -1,8 +1,5 @@
-const POST_URL = "https://script.google.com/macros/s/AKfycbxkA-kYvVfCI_k_q0Qn96CmQ2y0MaL2NrnLgAikInW5G_rt15s/exec";
-
 var myBrowser = (identifyBrowser() === "chrome" ? chrome : browser);
 var port = myBrowser.runtime.connect({name: "reminder control"});
-window.googleDocCallback = function () { return true; }; // needed to guarantee CORS headers are properly set
 
 function identifyBrowser() {
   if (navigator.userAgent.indexOf("Chrome") >= 0) { //browser is Chrome
@@ -12,20 +9,6 @@ function identifyBrowser() {
     return "firefox"
   }
 } // identifyBrowser
-
-function storeData(postBody) {  
-  // console.log(postBody);
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', POST_URL);
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState === 4) {
-      // console.log(xhr.statusText);
-      window.close();
-    }
-  }
-  xhr.send(JSON.stringify(postBody));
-} // storeData
 
 function registerSoM(stateOfMind) {
   switch (stateOfMind) {
@@ -38,10 +21,8 @@ function registerSoM(stateOfMind) {
 
 function listenForClicks() {
   document.addEventListener("click", (e) => {
-    let stateOfMind = registerSoM(e.target.textContent);
-    port.postMessage("clear");
-    storeData(stateOfMind);
-    port.postMessage("create");
+    port.postMessage(registerSoM(e.target.textContent));
+    window.close();
   });
 } // listenForClicks
 
