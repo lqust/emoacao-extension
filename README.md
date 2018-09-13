@@ -3,8 +3,6 @@
 ## TODO
 * Select project at first use
 * Make UI pretty
-* Use background to POST so popup can close faster
-* Avoid duplicate declaration of DELAY
 
 ## Related assets
 
