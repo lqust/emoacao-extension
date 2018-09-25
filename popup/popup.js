@@ -1,6 +1,6 @@
 var myBrowser = (identifyBrowser() === "chrome" ? chrome : browser);
 var port = myBrowser.runtime.connect({name: "reminder control"});
-var stateOfMindPicker = document.getElementById("team-picker");
+var stateOfMindPicker = document.getElementById("state-of-mind-picker");
 var teamPicker = document.getElementById("team-picker");
 
 
@@ -15,23 +15,28 @@ function identifyBrowser() {
 
 function registerSoM(stateOfMind) {
   switch (stateOfMind) {
-    case "Sem foco & Feliz" : return { "foco":"0", "feliz":"1" };
-    case "Com foco & Triste": return { "foco":"1", "feliz":"0" }; 
-    case "Sem foco & Triste": return { "foco":"0", "feliz":"0" }; 
-    case "Com foco & Feliz" : return { "foco":"1", "feliz":"1" };
+    case "com-foco-triste": return { "foco":"1", "feliz":"0", "time": teamName }; 
+    case "com-foco-feliz" : return { "foco":"1", "feliz":"1", "time": teamName };
+    case "sem-foco-triste": return { "foco":"0", "feliz":"0", "time": teamName }; 
+    case "sem-foco-feliz" : return { "foco":"0", "feliz":"1", "time": teamName };
   }
 } // registerSoM
 
 function listenForClicks() {
+
   document.addEventListener("click", (e) => {
     var clickTarget = e.target;
     switch (clickTarget.id) {
-      case "save-team": document.cookie="emoacao-team=" + document.getElementById("team-name").value; // set team name
-      case "reset-team": document.cookie="emoacao-team="
-      default: port.postMessage(registerSoM(e.target.textContent));
+      case "save-team": 
+        document.cookie="emoacao-team=" + document.getElementById("team-name").value; // set team name
+        break;
+      case "reset-team":
+        document.cookie="emoacao-team=";
+        break;
+      default: port.postMessage(registerSoM(clickTarget.id));
     }
+    window.close();
 
-    // window.close();
   });
 } // listenForClicks
 
@@ -40,12 +45,12 @@ function listenForClicks() {
 var cookieArray = document.cookie.split(';').filter((item) => item.includes('emoacao-team='));
 var teamName = (cookieArray[0] ? cookieArray[0].slice(cookieArray[0].indexOf("=")+1) : "");
 
-if (teamName) { // team name is defined, ask for State of Mind
-  teamPicker.style.display="none";
-  stateOfMindPicker.style.display="";
-} else { // first run, ask for team name
+if (teamName === "") { // team name is defined, ask for State of Mind
   teamPicker.style.display="";
   stateOfMindPicker.style.display="none";
+} else { // first run, ask for team name
+  teamPicker.style.display="none";
+  stateOfMindPicker.style.display="";
 }
 
 listenForClicks();
