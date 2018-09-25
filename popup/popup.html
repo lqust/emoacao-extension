@@ -8,16 +8,27 @@
 
 <body>
 
-  <table id="popup-content">
-    <tr>
-      <td class="button emoacao">Com foco & Triste</td>
-      <td class="button emoacao">Com foco & Feliz</td>
-    </tr>
-    <tr>
-      <td class="button emoacao">Sem foco & Triste</td>
-      <td class="button emoacao">Sem foco & Feliz</td>
-    </tr>
-  </table>
+  <div id="state-of-mind-picker">
+
+    <table id="popup-content">
+      <tr>
+        <td class="button emoacao">Com foco & Triste</td>
+        <td class="button emoacao">Com foco & Feliz</td>
+      </tr>
+      <tr>
+        <td class="button emoacao">Sem foco & Triste</td>
+        <td class="button emoacao">Sem foco & Feliz</td>
+      </tr>
+    </table>
+  
+  </div>
+  <div id="team-picker">
+
+    Time:
+    <input type="text"   class="text-input"   id="team-name">
+    <input type="button" class="button-input" id="save-team" value="Salvar">
+
+  </div>
 
   <script data-cfasync="false" type="text/javascript" src="popup.js"></script>
 
