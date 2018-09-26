@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="popup.css"/>
   </head>
 
-<body>
+<body class="popup">
 
   <div id="state-of-mind-picker">
 
@@ -20,14 +20,16 @@
         <td class="button emoacao" id="sem-foco-feliz">Sem foco & Feliz</td>
       </tr>
     </table>
-    <a id="reset-team">Trocar de time</a>
+
+    <div class="secondary-action" id="reset-team">Sair do time atual</div>
+
   </div>
 
-  <div id="team-picker">
+  <div id="team-picker" style=" white-space: nowrap">
 
     Time:
     <input type="text"   class="text-input"   id="team-name">
-    <input type="button" class="button-input" id="save-team" value="Salvar">
+    <input type="button" class="emoacao button" id="save-team" value="Salvar">
 
   </div>
 
