@@ -30,6 +30,7 @@ function doPost(e) {
     rowData[0] = new Date(); // Timestamp
     rowData[1] = jsonData.foco;
     rowData[2] = jsonData.feliz;
+    rowData[3] = jsonData.time;
     
     // Write new row to spreadsheet
     var newRange = sheet.getRange(newRow, 1, 1, rowData.length);
@@ -39,4 +40,5 @@ function doPost(e) {
   // Return result of operation
   return ContentService.createTextOutput(result);
 }
+
 ```
