@@ -1,25 +1,58 @@
-html, body {
-  width: 240px;
+.popup {
+  background-color: Window;
+  padding-left: 2px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: sans-serif;
+  color: #33556f;
 }
 
-.hidden {
-  display: none;
+.emoacao:hover {
+  background-color: #b7cfe1;
+  color: #33556f;
 }
-
+.emoacao:active {
+  background-color: #ffffff;
+  color: #33556f;
+}
+.emoacao {
+  background-color: #286ca1;
+}
 .button {
   margin: 3% auto;
-  padding: 2px;
+  color: #FFFFFF;
+  border-color: #286ca1;
+  border-style: solid;
+  padding: 3px;
+  min-width: 70px;
   text-align: center;
   font-size: 14px;
   font-weight: bold;
   font-family: sans-serif;
   cursor: pointer;
 }
-
-.emoacao:hover {
-  background-color: #f0f0f0;
+.secondary-action {
+  font-size: 12px;
+  font-weight: lighter;
+  font-family: sans-serif;
+  font-style: italic;
+  text-decoration: underline;
+  color: grey;
+  text-align: center;
+  line-height: 20px;
+  padding-top: 5px;
+  width: 100%;
 }
 
-.emoacao {
-  background-color: #c0c0c0;
+.secondary-action:hover {
+  color: #33556f;
+}
+
+.text-input {
+  width: 100px;
+  height: 20px;
+  border-color: #286ca1;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: thin;
 }

@@ -6,18 +6,32 @@
     <link rel="stylesheet" href="popup.css"/>
   </head>
 
-<body>
+<body class="popup">
 
-  <table id="popup-content">
-    <tr>
-      <td class="button emoacao">Com foco & Triste</td>
-      <td class="button emoacao">Com foco & Feliz</td>
-    </tr>
-    <tr>
-      <td class="button emoacao">Sem foco & Triste</td>
-      <td class="button emoacao">Sem foco & Feliz</td>
-    </tr>
-  </table>
+  <div id="state-of-mind-picker">
+
+    <table id="popup-content">
+      <tr>
+        <td class="button emoacao" id="com-foco-triste">Com foco & Triste</td>
+        <td class="button emoacao" id="com-foco-feliz">Com foco & Feliz</td>
+      </tr>
+      <tr>
+        <td class="button emoacao" id="sem-foco-triste">Sem foco & Triste</td>
+        <td class="button emoacao" id="sem-foco-feliz">Sem foco & Feliz</td>
+      </tr>
+    </table>
+
+    <div class="secondary-action" id="reset-team">Sair do time atual</div>
+
+  </div>
+
+  <div id="team-picker" style=" white-space: nowrap">
+
+    Time:
+    <input type="text"   class="text-input"   id="team-name">
+    <input type="button" class="emoacao button" id="save-team" value="Salvar">
+
+  </div>
 
   <script data-cfasync="false" type="text/javascript" src="popup.js"></script>
 
