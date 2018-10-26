@@ -20,9 +20,11 @@ function listenForClicks() {
     var clickTarget = e.target;
     switch (clickTarget.id) {
       case "save-team": 
-        document.cookie="emoacao-team=" + document.getElementById("team-name").value; // set team name
-        window.close();
-        break;
+        document.cookie="emoacao-team=" + document.getElementById("team-name").value.toUpperCase(); // set team name
+        teamPicker.style.display="";
+        stateOfMindPicker.style.display="none";
+        location.reload(true);
+      break;
       case "reset-team":
         document.cookie="emoacao-team=";
         window.close();
