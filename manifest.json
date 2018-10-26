@@ -1,4 +1,9 @@
 {
+  "applications": {
+    "gecko": {
+      "id": "emoacao@protolous.org"
+    }
+  },
   "description": "Selects a state of mind for tracking team happiness and productiviy",
   "manifest_version": 2,
   "name": "EmoAção",
