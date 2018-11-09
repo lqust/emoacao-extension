@@ -20,9 +20,10 @@ function listenForClicks() {
     var clickTarget = e.target;
     switch (clickTarget.id) {
       case "save-team": 
-        document.cookie="emoacao-team=" + document.getElementById("team-name").value.toUpperCase(); // set team name
+        document.cookie = "emoacao-team=" + document.getElementById("team-name").value.toUpperCase();; // set team name
         teamPicker.style.display="";
         stateOfMindPicker.style.display="none";
+        console.log("cookies set: " + document.cookie);
         location.reload(true);
       break;
       case "reset-team":
@@ -55,12 +56,12 @@ function listenForClicks() {
 var cookieArray = document.cookie.split(';').filter((item) => item.includes('emoacao-team='));
 var teamName = (cookieArray[0] ? cookieArray[0].slice(cookieArray[0].indexOf("=")+1) : "");
 
+teamPicker.style.display="none";
+stateOfMindPicker.style.display="";
+
 if (teamName === "") { // team name is defined, ask for State of Mind
   teamPicker.style.display="";
   stateOfMindPicker.style.display="none";
-} else { // first run, ask for team name
-  teamPicker.style.display="none";
-  stateOfMindPicker.style.display="";
-}
+} 
 
 listenForClicks();

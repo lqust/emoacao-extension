@@ -10,6 +10,8 @@
   "version": "2.0",
   "permissions": [
     "alarms",
+    "cookies",
+    "<all_urls>",
     "https://script.google.com/*"
   ],
   "browser_action": {
